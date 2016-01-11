@@ -9,13 +9,12 @@
 module.exports = (robot) ->
 
     robot.hear /reviewed/i, (res) ->
+        revs = robot.brain.get "com.jjemson.jarvis.reviewer-#{res.message.room}" or []
+        revs.concat "#{msg.message.user.name}"
+        robot.brain.set "com.jjemson.jarvis.reviewer-#{res.message.room}", revs
         res.send "Thanks for reviewing!"
     
     robot.respond /show users$/i, (msg) ->
-        response = ""
-
-        for own key, user of robot.brain.data.users
-            response += "#{user.id} #{user.name}"
-            response += " <#{user.email_address}>" if user.email_address
-            response += "\n"
+        revs = robot.brain.get "com.jjemson.jarvis.reviewer-#{res.message.room}" or []
+        response = revs.toString
         msg.send response
