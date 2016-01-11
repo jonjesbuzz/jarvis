@@ -3,18 +3,23 @@
 #
 # Commands:
 #   reviewed - Let hubot know you reviewed an assignment
-#   hubot who reviewed - Check who reviewed an assignment.
+#   hubot show me reviewers - Check who reviewed an assignment.
 
+array = require 'array'
 
 module.exports = (robot) ->
 
-    robot.hear /reviewed/i, (res) ->
-        revs = robot.brain.get "com.jjemson.jarvis.reviewer-#{res.message.room}" or []
-        revs.concat "#{msg.message.user.name}"
-        robot.brain.set "com.jjemson.jarvis.reviewer-#{res.message.room}", revs
-        res.send "Thanks for reviewing!"
+    robot.hear /reviewed/i, (msg) ->
+        revs = robot.brain.get "com.jjemson.jarvis.reviewer-#{msg.message.room}" or []
+        if revs is null then revs = []
+        revs = array(revs)
+        revs.push "#{msg.message.user.name}"
+        revs = revs.unique()
+        robot.brain.set "com.jjemson.jarvis.reviewer-#{msg.message.room}", revs
+        msg.send "Thanks for reviewing!"
     
-    robot.respond /show users$/i, (msg) ->
-        revs = robot.brain.get "com.jjemson.jarvis.reviewer-#{res.message.room}" or []
-        response = revs.toString
-        msg.send response
+    robot.respond /show me reviewers/i, (msg) ->
+        revs = robot.brain.get "com.jjemson.jarvis.reviewer-#{msg.message.room}" or []
+        if revs is null then revs = []
+        revs = array(revs)
+        msg.reply revs or "None yet"
