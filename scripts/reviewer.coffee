@@ -18,7 +18,7 @@ module.exports = (robot) ->
         robot.brain.set "com.jjemson.jarvis.reviews.#{msg.message.room}", revs
         msg.reply "Thanks for reviewing!"
     
-    robot.respond /show me reviewers/i, (msg) ->
+    robot.respond /show me reviewers$/i, (msg) ->
         revs = robot.brain.get "com.jjemson.jarvis.reviews.#{msg.message.room}" or []
         if revs is null then revs = []
         revs = array(revs)
