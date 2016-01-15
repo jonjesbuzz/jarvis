@@ -1,1 +1,0 @@
-process.env.HUBOT_GROUP_ALIAS="a1=saikrishna,eric;a2=afiq,avery;a3=joonho,david;a4=siddu,ashley;a5=carey,chad;a6=cory,scott;b1=makoto,jt;b2=ria,julia;b3=brody,ayan;b4=raymond,alok;b5=raymond,alok;b6=ria,julia;bots=slackbot,jonathan,jarvis"
