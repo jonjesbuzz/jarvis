@@ -7,6 +7,5 @@
   "hubot-rules",
   "hubot-dogeme",
   "hubot-humanity",
-  "hubot-heroku-keepalive",
-  "hubot-group-alias"
+  "hubot-heroku-keepalive"
 ]
