@@ -32,7 +32,7 @@ module.exports = (robot) ->
         revs = robot.brain.get "com.jjemson.jarvis.reviews.#{msg.match[1]}" or []
         if revs is null then revs = []
         revs = array(revs)
-        response = "*Reviewers*\n"
+        response = "*Reviewers in #{msg.match[1]}*\n"
         for id in revs
             u = robot.brain.userForId(id)
             response += "• #{u.real_name}\n"
