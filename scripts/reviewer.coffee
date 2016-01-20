@@ -7,6 +7,13 @@
 
 array = require 'array'
 
+responses = [
+    'Thanks for reviewing!',
+    'Who\'s awesome?  You\'re awesome.',
+    'And it\'s that much closer to perfection.',
+    'Woohoo!  You\'re the best!'
+]
+
 module.exports = (robot) ->
 
     robot.hear /reviewed/i, (msg) ->
@@ -16,7 +23,7 @@ module.exports = (robot) ->
         revs.push "#{msg.message.user.id}"
         revs = revs.unique()
         robot.brain.set "com.jjemson.jarvis.reviews.#{msg.message.room}", revs
-        msg.reply "Thanks for reviewing!"
+        msg.reply msg.random responses
     
     robot.respond /(show me )?reviewers$/i, (msg) ->
         revs = robot.brain.get "com.jjemson.jarvis.reviews.#{msg.message.room}" or []
