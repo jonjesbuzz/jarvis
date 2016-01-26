@@ -4,6 +4,7 @@
 # Commands:
 #   reviewed - Let hubot know you reviewed an assignment
 #   hubot show me reviewers - Check who reviewed an assignment.
+#   hubot show me reviewers in [channel] - Check who reviewed an assignment in a specific channel.
 
 array = require 'array'
 
