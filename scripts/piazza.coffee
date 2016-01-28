@@ -11,5 +11,5 @@ classID = process.env.HUBOT_PIAZZA_CLASS
 
 
 module.exports = (robot) ->
-    robot.hear /piazza@(\d{1,3})/i, (res) ->
+    robot.hear /piazza@(\d{1,4})/i, (res) ->
         res.send "https://piazza.com/class/#{classID}?cid=#{res.match[1]}"
