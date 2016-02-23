@@ -25,7 +25,7 @@ module.exports = (robot) ->
         revs = revs.unique()
         robot.brain.set "com.jjemson.jarvis.reviews.#{msg.message.room}", revs
         msg.reply msg.random responses
-    
+
     robot.respond /(show me )?reviewers$/i, (msg) ->
         revs = robot.brain.get "com.jjemson.jarvis.reviews.#{msg.message.room}" or []
         if revs is null then revs = []
@@ -36,7 +36,7 @@ module.exports = (robot) ->
             response += "• #{u.real_name}\n"
         msg.send response or "None yet"
 
-    robot.respond /(show me )?reviewers in (.*)/i, (msg) ->
+    robot.respond /(show me )?reviewers in #?(.*)/i, (msg) ->
         revs = robot.brain.get "com.jjemson.jarvis.reviews.#{msg.match[2]}" or []
         if revs is null then revs = []
         revs = array(revs)
