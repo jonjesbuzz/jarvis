@@ -13,4 +13,7 @@ module.exports = (robot) ->
         res.reply "What was I thinking?  You're usually so discreet."
 
     robot.respond /what do you think about/i, (res) ->
-        res.reply "It's your opinion that matters to me, #{res.message.user.name}"
+        res.reply "It's your opinion that matters to me."
+
+    robot.hear /hvz/i, (res) ->
+        res.reply "I'm sorry, but we've banned discussion on Humans vs. Zombies."
