@@ -20,12 +20,13 @@ module.exports = (robot) ->
     robot.hear /hvz/i, (res) ->
         res.reply "I'm sorry, but we've banned discussion on Humans vs. Zombies."
 
-    robot.hear /P:\s*(\d)+\s*h?\s*,?\s+G:\s*(\d)+\s*h?\s*/i, (msg) ->
+    robot.hear /P:\s*(\d{1,})\s*h?\s*,?\s*G:\s*(\d{1,})\s*h?\s*/i, (msg) ->
         graders = robot.brain.get "com.jjemson.jarvis.proctor.#{msg.message.room}" or []
         if graders is null then graders = []
         graders = array(graders)
         graders.push { id: msg.message.user.id, procH: msg.match[1], gradeH: msg.match[2]}
         graders.unique()
+        console.log(graders);
         robot.brain.set "com.jjemson.jarvis.proctor.#{msg.message.room}", graders
         msg.reply "Thank you for your response, #{msg.message.user.real_name}"
 
