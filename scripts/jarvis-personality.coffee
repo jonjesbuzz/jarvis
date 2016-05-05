@@ -20,7 +20,7 @@ module.exports = (robot) ->
     robot.hear /hvz/i, (res) ->
         res.reply "I'm sorry, but we've banned discussion on Humans vs. Zombies."
 
-    robot.hear /P:\s*(\d{1,})\s*h?\s*,?\s*G:\s*(\d{1,})\s*h?\s*/i, (msg) ->
+    robot.hear /P:\s*([\d\.]{1,})\s*h?\s*,?\s*G:\s*([\d\.]{1,})\s*h?\s*/i, (msg) ->
         graders = robot.brain.get "com.jjemson.jarvis.proctor.#{msg.message.room}" or []
         if graders is null then graders = []
         graders = array(graders)
