@@ -28,7 +28,7 @@ module.exports = (robot) ->
         graders.unique()
         console.log(graders);
         robot.brain.set "com.jjemson.jarvis.proctor.#{msg.message.room}", graders
-        msg.reply "Thank you for your response, #{msg.message.user.real_name}"
+        msg.reply "Thank you for your response, #{msg.message.user.first_name}"
 
     robot.respond /(show me )?graders$/i, (msg) ->
         graders = robot.brain.get "com.jjemson.jarvis.proctor.#{msg.message.room}" or []
