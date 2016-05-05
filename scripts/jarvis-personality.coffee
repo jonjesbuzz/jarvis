@@ -35,7 +35,7 @@ module.exports = (robot) ->
         if graders is null then graders = []
         graders = array(graders)
         response = "*Statistics in #{msg.message.room}*\n"
-        for obj in revs
+        for obj in graders
             user = robot.brain.userForId(obj.id)
             response += "• #{user.real_name} - Proctored #{obj.procH} hours and graded #{obj.gradeH}\n"
         graders.unique()
