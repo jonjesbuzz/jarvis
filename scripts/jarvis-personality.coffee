@@ -25,11 +25,10 @@ module.exports = (robot) ->
         if graders is null then graders = []
         graders = array(graders)
         graders.push { id: msg.message.user.id, procH: msg.match[1], gradeH: msg.match[2]}
-        graders.unique (o) ->
-            return o.id
+        graders.unique (o) -> o.id
         console.log(graders);
         robot.brain.set "com.jjemson.jarvis.proctor.#{msg.message.room}", graders
-        msg.reply "Thank you for your response, #{msg.message.user.first_name}"
+        msg.reply "Thank you for your response, #{msg.message.user.name}"
 
     robot.respond /(show me )?graders$/i, (msg) ->
         graders = robot.brain.get "com.jjemson.jarvis.proctor.#{msg.message.room}" or []
